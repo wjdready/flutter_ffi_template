@@ -1,0 +1,4 @@
+LIBRARY flutter_ffi_template
+EXPORTS
+    add
+    registerPrintDebugCallback
