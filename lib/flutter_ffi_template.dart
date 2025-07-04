@@ -26,8 +26,3 @@ final flutter_ffi_template bindings = flutter_ffi_template(dylib);
 int add(int a, int b) {
   return bindings.add(a, b);
 }
-
-void setPrintDebugCallback(PrintDebugCallbackType callback) {
-  bindings.registerPrintDebugCallback(callback);
-}
-

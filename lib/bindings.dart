@@ -5794,34 +5794,6 @@ class flutter_ffi_template {
       _Dart_SetDwarfStackTraceFootnoteCallbackPtr.asFunction<
           void Function(Dart_DwarfStackTraceFootnoteCallback)>();
 
-  void registerPrintDebugCallback(
-    PrintDebugCallbackType fun,
-  ) {
-    return _registerPrintDebugCallback(
-      fun,
-    );
-  }
-
-  late final _registerPrintDebugCallbackPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(PrintDebugCallbackType)>>(
-          'registerPrintDebugCallback');
-  late final _registerPrintDebugCallback = _registerPrintDebugCallbackPtr
-      .asFunction<void Function(PrintDebugCallbackType)>();
-
-  void printDebug(
-    ffi.Pointer<ffi.Char> format,
-  ) {
-    return _printDebug(
-      format,
-    );
-  }
-
-  late final _printDebugPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Char>)>>(
-          'printDebug');
-  late final _printDebug =
-      _printDebugPtr.asFunction<void Function(ffi.Pointer<ffi.Char>)>();
-
   int add(
     int a,
     int b,
@@ -5835,6 +5807,84 @@ class flutter_ffi_template {
   late final _addPtr =
       _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int)>>('add');
   late final _add = _addPtr.asFunction<int Function(int, int)>();
+
+  /// //////////////////////// Send Port 测试 //////////////////////////////////////
+  int InitDartApiDL(
+    ffi.Pointer<ffi.Void> data,
+  ) {
+    return _InitDartApiDL(
+      data,
+    );
+  }
+
+  late final _InitDartApiDLPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Pointer<ffi.Void>)>>(
+          'InitDartApiDL');
+  late final _InitDartApiDL =
+      _InitDartApiDLPtr.asFunction<int Function(ffi.Pointer<ffi.Void>)>();
+
+  void nativeDartPortTestStartWork(
+    int port,
+  ) {
+    return _nativeDartPortTestStartWork(
+      port,
+    );
+  }
+
+  late final _nativeDartPortTestStartWorkPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(Dart_Port)>>(
+          'nativeDartPortTestStartWork');
+  late final _nativeDartPortTestStartWork =
+      _nativeDartPortTestStartWorkPtr.asFunction<void Function(int)>();
+
+  void nativeCallableTest(
+    int x,
+    nativeCallableTestCallbackType callback,
+  ) {
+    return _nativeCallableTest(
+      x,
+      callback,
+    );
+  }
+
+  late final _nativeCallableTestPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Int, nativeCallableTestCallbackType)>>('nativeCallableTest');
+  late final _nativeCallableTest = _nativeCallableTestPtr
+      .asFunction<void Function(int, nativeCallableTestCallbackType)>();
+
+  /// //////////////////////// NativeCallable 测试 /////////////////////////////////
+  void nativeHttpGet(
+    ffi.Pointer<ffi.Char> uri,
+    NativeHttpCallback callback,
+  ) {
+    return _nativeHttpGet(
+      uri,
+      callback,
+    );
+  }
+
+  late final _nativeHttpGetPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Pointer<ffi.Char>, NativeHttpCallback)>>('nativeHttpGet');
+  late final _nativeHttpGet = _nativeHttpGetPtr
+      .asFunction<void Function(ffi.Pointer<ffi.Char>, NativeHttpCallback)>();
+
+  void nativeFree(
+    ffi.Pointer<ffi.Void> ptr,
+  ) {
+    return _nativeFree(
+      ptr,
+    );
+  }
+
+  late final _nativeFreePtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void>)>>(
+          'nativeFree');
+  late final _nativeFree =
+      _nativeFreePtr.asFunction<void Function(ffi.Pointer<ffi.Void>)>();
 }
 
 final class Dart_Isolate_ extends ffi.Opaque {}
@@ -6821,12 +6871,18 @@ typedef DartDart_DwarfStackTraceFootnoteCallbackFunction = ffi.Pointer<ffi.Char>
 /// \param count number of elements in the addresses array
 typedef Dart_DwarfStackTraceFootnoteCallback = ffi
     .Pointer<ffi.NativeFunction<Dart_DwarfStackTraceFootnoteCallbackFunction>>;
-typedef PrintDebugCallbackTypeFunction = ffi.Void Function(
-    ffi.Pointer<ffi.Char> str);
-typedef DartPrintDebugCallbackTypeFunction = void Function(
-    ffi.Pointer<ffi.Char> str);
-typedef PrintDebugCallbackType
-    = ffi.Pointer<ffi.NativeFunction<PrintDebugCallbackTypeFunction>>;
+typedef nativeCallableTestCallbackTypeFunction = ffi.Void Function(
+    ffi.Int x, ffi.Pointer<ffi.Int> ret);
+typedef DartnativeCallableTestCallbackTypeFunction = void Function(
+    int x, ffi.Pointer<ffi.Int> ret);
+typedef nativeCallableTestCallbackType
+    = ffi.Pointer<ffi.NativeFunction<nativeCallableTestCallbackTypeFunction>>;
+typedef NativeHttpCallbackFunction = ffi.Void Function(
+    ffi.Pointer<ffi.Char> resp);
+typedef DartNativeHttpCallbackFunction = void Function(
+    ffi.Pointer<ffi.Char> resp);
+typedef NativeHttpCallback
+    = ffi.Pointer<ffi.NativeFunction<NativeHttpCallbackFunction>>;
 
 const int kNativeArgNumberPos = 0;
 
@@ -6835,6 +6891,14 @@ const int kNativeArgNumberSize = 8;
 const int kNativeArgTypePos = 8;
 
 const int kNativeArgTypeSize = 8;
+
+const int kNativeArgNumberPos$1 = 0;
+
+const int kNativeArgNumberSize$1 = 8;
+
+const int kNativeArgTypePos$1 = 8;
+
+const int kNativeArgTypeSize$1 = 8;
 
 const int DART_FLAGS_CURRENT_VERSION = 13;
 

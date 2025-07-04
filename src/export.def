@@ -1,4 +1,7 @@
 LIBRARY flutter_ffi_template
 EXPORTS
     add
-    registerPrintDebugCallback
+    InitDartApiDL
+    nativeDartPortTestStartWork
+    nativeHttpGet
+    nativeFree

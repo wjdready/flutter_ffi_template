@@ -2,8 +2,7 @@
 
 #include "../include/dart_api.h"
 
-typedef void (*PrintDebugCallbackType)(const char *str);
-
-void registerPrintDebugCallback(PrintDebugCallbackType fun);
-
-void printDebug(const char *format, ...);
+#define printWithFlush(...) { \
+    printf(__VA_ARGS__); \
+    fflush(stdout); \
+}
